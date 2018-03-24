@@ -214,7 +214,6 @@ def feature_time_series(melmix, mc):
 
     # Import required modules
     import numpy as np
-    import random
 
     # Read melodic mix file (IC time-series), subsequently define a set of squared time-series
     mix = np.loadtxt(melmix)
@@ -249,7 +248,7 @@ def feature_time_series(melmix, mc):
     maxTC = np.zeros((nSplits, mix.shape[1]))
     for i in range(0, nSplits):
         # Get a random set of 90% of the dataset and get associated RP model and IC time-series matrices
-        idx = np.array(random.sample(list(range(0, mix.shape[0])), int(round(0.9 * mix.shape[0]))))
+        idx = np.random.choice(mix.shape[0], int(round(0.9 * mix.shape[0])), replace=False)
         RP_model_temp = RP_model[idx, :]
         mix_temp = mix[idx, :]
         mixsq_temp = mixsq[idx, :]
